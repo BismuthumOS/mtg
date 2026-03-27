@@ -20,5 +20,5 @@ services:
     container_name: mtg
     image: nineseconds/mtg:2
     command: simple-run -n 8.8.8.8 -t 30s -a 1mib 0.0.0.0:3128 README_SECRET
-logging: *logging
+    logging: *logging
 
