@@ -5,20 +5,11 @@ x-logging: &logging
     max-file: "3"
 
 services:
-  traefik:
-    image: traefik
-    container_name: traefik
-    restart: unless-stopped
-    volumes:
-      - ./traefik.yml:/etc/traefik/traefik.yml:ro
-      - ./dynamic.yml:/etc/traefik/dynamic.yml:ro
-    ports:
-      - 443:443
-    logging: *logging
-
   mtg:
     container_name: mtg
     image: nineseconds/mtg:2
-    command: simple-run -n 8.8.8.8 -t 30s -a 1mib 0.0.0.0:3128 README_SECRET
+    command: simple-run -n 8.8.8.8 -t 30s -a 1mib 0.0.0.0:3128 ${MTG_SECRET}
+    ports:
+      - 443:3128
     logging: *logging
 
